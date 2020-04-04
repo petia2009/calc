@@ -3,8 +3,12 @@ import pygame
 pygame.init()
 win = pygame.display.set_mode((500, 500))
 
-myfont = pygame.font.SysFont("Comic Sans MS", 30)
-textsurface = myfont.render("Some Text", False, (0, 0, 0))
+pygame.font.init()
+
+def draw_text(surface, text, size, x, y):
+    font = pygame.font.SysFont("Comic Sans MS", size)
+    text_surface = font.render(text, True, (255, 255, 255))
+    surface.blit(text_surface, (x, y))
 
 run = True
 while run:
@@ -13,7 +17,8 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-    win.fill((255, 255, 255))
+    draw_text(win, "Some Text", 30, 0, 0)
     pygame.display.flip()
 
 pygame.quit()
+
